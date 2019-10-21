@@ -1,0 +1,57 @@
+.DS_Store
+
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/var/*
+!/var/.gitkeep
+!/var/secure/.gitkeep
+!/var/secure/media/.gitkeep
+!/var/secure/media/upload/.gitkeep
+/vendor/
+###< symfony/framework-bundle ###
+.idea
+.docker
+.docker-sync
+###> symfony/web-server-bundle ###
+/.web-server-pid
+###< symfony/web-server-bundle ###
+###> lexik/jwt-authentication-bundle ###
+/config/jwt/*.pem
+###< lexik/jwt-authentication-bundle ###
+
+/public/build/*
+/public/build_dev/*
+/public/media/*
+/public/static/*
+/public/js/*
+/public/.htaccess
+/public/check.php
+docker-compose.yaml
+docker-sync.yml
+Makefile
+###> symfony/webpack-encore-bundle ###
+/node_modules/
+/public/build/
+npm-debug.log
+yarn-error.log
+###< symfony/webpack-encore-bundle ###
+elastic_api_key.txt
+supervisord.log
+supervisord.pid
+###> symfony/phpunit-bridge ###
+.phpunit.result.cache
+/phpunit.xml
+.phpunit
+###< symfony/phpunit-bridge ###
+###> friendsofphp/php-cs-fixer ###
+/.php-cs-fixer.php
+/.php-cs-fixer.cache
+###< friendsofphp/php-cs-fixer ###
+
+###> phpstan/phpstan ###
+phpstan.neon
+###< phpstan/phpstan ###

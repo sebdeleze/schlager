@@ -1,0 +1,136 @@
+{
+    "name": "iomedia/client",
+    "type": "project",
+    "license": "proprietary",
+    "description": "Client ALLINONE",
+    "require": {
+        "php": "^8.1",
+        "ext-ctype": "*",
+        "ext-iconv": "*",
+        "iomedia/aio-cms-bundle": "dev-seb/upgrade-yarn-deps as 1.10.x-dev",
+        "symfony/console": "^5.4",
+        "symfony/dotenv": "^5.4",
+        "symfony/flex": "^2.2",
+        "symfony/framework-bundle": "^5.4",
+        "symfony/yaml": "^5.4",
+        "jms/translation-bundle": "^1.5",
+        "symfony/mailer": "^5.4",
+        "symfony/amazon-mailer": "^5.4",
+        "symfony/monolog-bundle": "^3.8",
+        "symfony/stopwatch": "^5.4",
+        "symfony/runtime": "^5.4",
+        "symfony/rate-limiter": "^5.4",
+        "symfony/webpack-encore-bundle": "^2.0",
+        "symfony/stimulus-bundle": "^2.10",
+        "symfony/ux-turbo": "^2.10"
+    },
+    "require-dev": {
+        "symfony/apache-pack": "^1.0",
+        "symfony/maker-bundle": "^1.0",
+        "symfony/debug-bundle": "^5.4",
+        "symfony/web-profiler-bundle": "^5.4",
+        "iomedia/aio-test-bundle": "^1.1"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:iomediacommunication/aio-cms-bundle.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:iomediacommunication/test-bundle.git"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "preferred-install": {
+            "*": "dist"
+        },
+        "platform": {
+            "php": "8.1"
+        },
+        "sort-packages": false,
+        "allow-plugins": {
+            "symfony/flex": true,
+            "php-http/discovery": true,
+            "symfony/runtime": true
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\Tests\\": "tests/",
+            "Aio\\CmsBundle\\Tests\\": "vendor/iomedia/aio-cms-bundle/tests"
+        }
+    },
+    "replace": {
+        "paragonie/random_compat": "2.*",
+        "symfony/polyfill-ctype": "*",
+        "symfony/polyfill-iconv": "*"
+    },
+    "scripts": {
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd",
+            "fos:js-routing:dump --format=json --target=var/fos_js_routes.json": "symfony-cmd"
+        },
+        "post-install-cmd": [
+            "@auto-scripts"
+        ],
+        "post-update-cmd": [
+            "@auto-scripts"
+        ],
+        "complete-check": [
+            "@composer-validate",
+            "@lint-yaml",
+            "cs-dry",
+            "@db-schema-validate",
+            "@phpstan",
+            "@tests"
+        ],
+        "lint-yaml": "bin/console lint:yaml --parse-tags config",
+        "composer-validate": "composer validate --no-check-lock",
+        "db-schema-validate": "bin/console doctrine:schema:validate --env=prod --skip-sync",
+        "dev-init": "bin/console iomedia:database-dev:create --env=dev",
+        "phpstan": "vendor/bin/phpstan analyze -c phpstan.neon",
+        "cs-dry": "vendor/bin/php-cs-fixer fix --dry-run --diff",
+        "cs-fix": "vendor/bin/php-cs-fixer fix",
+        "tests-init": "bin/console iomedia:database-test:create --env=test --no-interaction",
+        "phpunit": "vendor/bin/phpunit --verbose",
+        "tests": [
+            "Composer\\Config::disableProcessTimeout",
+            "@tests-init",
+            "@phpunit"
+        ],
+        "complete-checks": [
+            "@composer-validate",
+            "@db-schema-validate",
+            "@lint-yaml",
+            "@cs-dry",
+            "@phpstan",
+            "@tests"
+        ],
+        "yarn-webpack": [
+            "Composer\\Config::disableProcessTimeout",
+            "yarn install && yarn encore dev"
+        ]
+    },
+    "conflict": {
+        "symfony/symfony": "*"
+    },
+    "extra": {
+        "symfony": {
+            "allow-contrib": true,
+            "require": "^5.4",
+            "endpoint": [
+                "https://api.github.com/repos/iomediacommunication/aio-cms-recipes/contents/index.json",
+                "flex://defaults"
+            ]
+        }
+    }
+}

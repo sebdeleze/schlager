@@ -1,0 +1,10 @@
+{% extends 'default/layout.html.twig' %}
+
+{% block body %}
+    {{ dump(content) }}
+    <div data-controller="hello"></div>
+    <turbo-frame id="the_frame_id">
+        <div>This block is scoped, the rest of the page will not change if you click here!</div>
+        <a href="{{ path('app_test') }}">Go to test</a>
+    </turbo-frame>
+{% endblock %}

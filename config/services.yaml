@@ -1,0 +1,55 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
+parameters:
+  front_host: "%env(FRONT_HOST)%"
+  back_host: "%env(BACK_HOST)%"
+
+services:
+  # default configuration for services in *this* file
+  _defaults:
+    autowire: true # Automatically injects dependencies in your services.
+    autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+  # makes classes in src/ available to be used as services
+  # this creates a service per class whose id is the fully-qualified class name
+  App\:
+    resource: "../src/"
+    exclude:
+      - "../src/DependencyInjection/"
+      - "../src/Entity/"
+      - "../src/Kernel.php"
+
+  Symfony\Component\Cache\Adapter\TagAwareAdapter:
+    public: true
+    class: Symfony\Component\Cache\Adapter\TagAwareAdapter
+    arguments: ["@cache.app", "@cache.app"]
+
+  # Inject this service in your controllers/services to verify a submitted captcha.
+  ReCaptcha\ReCaptcha:
+    arguments:
+      $secret: "%env(GOOGLE_RECAPTCHA_SECRET)%"
+      $requestMethod: '@ReCaptcha\RequestMethod'
+
+  # Curl is set here as default transport to communicate with Google servers.
+  # If you do not have php-curl extension, you can change for a socket or a plain POST request.
+  # Check out the repository for all other request methods:
+  # https://github.com/google/recaptcha/tree/master/src/ReCaptcha/RequestMethod
+  ReCaptcha\RequestMethod: '@ReCaptcha\RequestMethod\CurlPost'
+  ReCaptcha\RequestMethod\CurlPost: null
+  ReCaptcha\RequestMethod\Curl: null
+
+when@test:
+  parameters:
+    iomedia_cache: "%kernel.cache_dir%/../iomedia/admin-test"
+
+when@dev:
+  services:
+    EasyCorp\EasyLog\EasyLogHandler:
+      public: false
+      arguments: ["%kernel.logs_dir%/%kernel.environment%.log"]
+
+when@phpstan:
+  parameters:
+    container.dumper.inline_class_loader: false

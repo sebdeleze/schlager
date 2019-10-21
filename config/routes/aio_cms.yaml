@@ -1,0 +1,5 @@
+aio_cms:
+  resource: "@AioCmsBundle/Resources/config/routing.yml"
+  host: "%back_host%"
+  schemes: [https]
+

@@ -1,0 +1,19 @@
+aio_cms:
+  client:
+    name: "Schlager"
+    key: "schlager"
+
+when@dev:
+  parameters:
+    auth0_iomedia_client_id: "%env(AUTH0_IOMEDIA_CLIENT_ID)%"
+    auth0_iomedia_client_secret: "%env(AUTH0_IOMEDIA_CLIENT_SECRET)%"
+
+  aio_cms:
+    log_unatended_cache_rewrites: true
+
+when@test:
+  aio_cms:
+    log_unatended_cache_rewrites: true
+    api:
+      security:
+        bearer: true

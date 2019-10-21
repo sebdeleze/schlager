@@ -1,0 +1,39 @@
+security:
+  enable_authenticator_manager: true
+
+  firewalls:
+    dev:
+      pattern: ^/(_(profiler|wdt)|css|images|js)/
+      security: false
+    main:
+      pattern: ^/
+      provider: aio_users
+      user_checker: Aio\CmsBundle\BusinessLogic\Security\UserChecker
+      form_login:
+        login_path: login
+        check_path: login
+        username_parameter: _email
+      custom_authenticators:
+        - Aio\CmsBundle\BusinessLogic\Security\Auth0\Auth0Authenticator
+      entry_point: Aio\CmsBundle\BusinessLogic\Security\Auth0\Auth0Authenticator
+      remember_me:
+        secret: "%kernel.secret%"
+        lifetime: 604800 # 1 week in seconds
+        path: /
+      logout:
+        path: /logout
+        target: /login
+      switch_user: { role: ROLE_ADMIN }
+      login_throttling:
+        max_attempts: 3
+        interval: "5 minutes"
+
+  access_control:
+    - { path: ^/, roles: PUBLIC_ACCESS, host: front.schlager.localhost }
+    - { path: ^/api, roles: PUBLIC_ACCESS }
+    - { path: ^/login, roles: PUBLIC_ACCESS }
+    - { path: ^/forgot-password, roles: PUBLIC_ACCESS }
+    - { path: ^/new-password, roles: PUBLIC_ACCESS }
+    - { path: ^/admin, roles: ROLE_ADMIN }
+    - { path: ^/cache, roles: PUBLIC_ACCESS, methods: [POST] } # url de vidage d'OPCACHE
+    - { path: ^/, roles: ROLE_CLIENT }

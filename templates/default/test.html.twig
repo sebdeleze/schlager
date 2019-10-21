@@ -1,0 +1,8 @@
+{% extends 'default/layout.html.twig' %}
+
+{% block body %}
+    <turbo-frame id="the_frame_id">
+        <div>This test block is scoped, the rest of the page will not change if you click here!</div>
+        <a href="{{ path('app_index') }}">Go to home</a>
+    </turbo-frame>
+{% endblock %}
