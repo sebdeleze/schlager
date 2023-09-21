@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <title>
             {% block title %}AIO
             {% endblock %}
@@ -16,19 +18,19 @@
         {% endblock %}
     </head>
     <body>
-        <div>
-            <h1 class="text-3xl font-bold underline">
-                Hello world!
-            </h1>
-            <div id="nav">
-                <div>
-                    <a href="{{ path('app_index') }}">Home</a>
-                </div>
-                <div>
-                    <a href="{{ path('app_test') }}">Test</a>
-                </div>
-            </div>
-            {% block body %}{% endblock %}
+        <div id="application" class="xl:container xl:mx-auto flex flex-col h-screen justify-between" {{ stimulus_controller('app') }}>
+            <header class="mb-5">
+                <turbo-frame id="header" src="{{ path('app_default_header', { isHome: app.request.attributes.get('_route') == 'app_default_index' ? '1' : '0' }) }}"></turbo-frame>
+            </header>
+            <main class="w-full py-12 px-8 lg:px-24 lg:px-48 mx-auto mb-auto">
+                <turbo-frame id="content" data-turbo-action="advance">
+                    {% block content %}Content
+                    {% endblock %}
+                </turbo-frame>
+            </main>
+            <footer class="bg-red-600 text-white p-8 md:px-10 mt-5">
+                <turbo-frame id="footer" src="{{ path('app_default_footer') }}"></turbo-frame>
+            </footer>
         </div>
     </body>
 </html>

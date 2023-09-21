@@ -13,32 +13,53 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends AbstractController
 {
-    #[Route('/', name: 'app_index')]
-    #[Route('/contents/{slug}-{id}', name: 'app_index_content')]
-    public function index(?string $id, ContentManager $contentManager, TreeManager $treeManager, ContentHierarchyFactory $contentHierarchyFactory, Request $request): Response
+    #[Route('/', name: 'app_default_index')]
+    public function index(): Response
     {
-        $id = $id ?? 1;
-        $content = $contentManager->findById($id, $request->getLocale());
+        return $this->render('default/index.html.twig');
+    }
 
+    #[Route('/contents/{id}/{slug}', name: 'app_default_content')]
+    public function content(?string $id, ContentManager $contentManager, Request $request): Response
+    {
+        $content = $contentManager->findById((int) $id, $request->getLocale());
+
+        if (!$content) {
+            throw $this->createNotFoundException('Content not found');
+        }
+
+        return $this->render('default/content.html.twig', ['content' => $content]);
+    }
+
+    #[Route('/header', name: 'app_default_header')]
+    public function header(Request $request, TreeManager $treeManager, ContentHierarchyFactory $contentHierarchyFactory): Response
+    {
         $tree = $treeManager->findByNameKey('main');
 
         $search = new NavigationSearch();
         $search->addTree($tree);
         $search->setLanguage($request->getLocale());
 
-        $hierarchy = $contentHierarchyFactory->buildHierarchy($search, false);
+        $navigation = $contentHierarchyFactory->buildHierarchy($search, false);
 
-
-        if (!$content) {
-            throw $this->createNotFoundException('Content not found');
-        }
-
-        return $this->render('default/index.html.twig', ['content' => $content]);
+        return $this->render('default/partial/_header.html.twig', [
+            'contents' => $navigation->getHierarchy(),
+        ]);
     }
 
-    #[Route('/test', name: 'app_test')]
-    public function test(): Response
+    #[Route('/footer', name: 'app_default_footer')]
+    public function footer(Request $request, TreeManager $treeManager, ContentHierarchyFactory $contentHierarchyFactory): Response
     {
-        return $this->render('default/test.html.twig');
+        $tree = $treeManager->findByNameKey('footer');
+
+        $search = new NavigationSearch();
+        $search->addTree($tree);
+        $search->setLanguage($request->getLocale());
+
+        $navigation = $contentHierarchyFactory->buildHierarchy($search, false);
+
+        return $this->render('default/partial/_footer.html.twig', [
+            'contents' => $navigation->getContents(),
+        ]);
     }
 }

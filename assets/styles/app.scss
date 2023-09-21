@@ -1,3 +1,43 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: FugazOne;
+    src: url("../fonts/FugazOne-Regular.ttf");
+  }
+
+  @font-face {
+    font-family: Poppins;
+    src: url("../fonts/Poppins-Medium.ttf");
+  }
+
+  body {
+    .io-header {
+      @apply h-[250px] text-white bg-cover bg-center;
+
+      .io-hero {
+        @apply hidden;
+      }
+    }
+
+    .io-home {
+      .io-header {
+        @apply h-[800px];
+
+        .io-hero {
+          @apply absolute bottom-16 left-0 right-0 mx-auto w-full px-16 lg:w-2/3 xl:w-1/2 text-center text-xl font-semibold flex flex-col gap-y-8 gap-x-2 lg:gap-x-8;
+        }
+      }
+    }
+  }
+
+  h1 {
+    @apply text-5xl mb-10 font-heading;
+  }
+
+  h2 {
+    @apply text-3xl mb-5 font-heading;
+  }
+}

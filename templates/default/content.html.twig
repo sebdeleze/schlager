@@ -1,0 +1,6 @@
+{% extends 'default/layout.html.twig' %}
+
+{% block content %}
+    <h1>{{ content.properties.title }}</h1>
+    <div class="text-justify">{{ content.properties.content | raw }}</div>
+{% endblock %}

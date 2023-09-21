@@ -1,0 +1,31 @@
+<turbo-frame id="footer">
+    <div class="w-36 mx-auto">
+        <img src="{{ asset('logo.svg') }}" class="w-full">
+    </div>
+    <div class="text-5xl text-center my-8 font-heading">Après-Ski Closing Party</div>
+    <div class="grid md:grid-cols-2 md:gap-4 lg:gap-36 md:mt-16">
+        <div class="flex flex-col md:flex-row gap-5 divide-y md:divide-x md:divide-y-0 mb-10 text-center md:text-left">
+            <div class="md:px-8">Association<br>
+                "Les Amis de la Schlager"<br><br>
+                Chemin de Balavaud 3<br>
+                1963 Vétroz<br>
+                Valais
+            </div>
+            <ul class="font-medium flex flex-col gap-4 pt-6 md:pt-0 md:px-8">
+                {% for content in contents %}
+                    <li>
+                        <a href="{{ content.link.url }}" class="hover:text-gray-300" data-turbo-frame="content">{{ content.link.label }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div>
+            <div class="text-center md:text-left mb-10 text-3xl font-heading">Sponsors principaux</div>
+            <div class="grid grid-cols-3 gap-x-16 gap-y-10">
+                <a href="https://www.iomedia.ch" target="_blank">
+                    <img src="https://www.iomedia.ch/bundles/iomediaweb/img/logos/logo-iomedia-2022-white.svg">
+                </a>
+            </div>
+        </div>
+    </div>
+</turbo-frame>
