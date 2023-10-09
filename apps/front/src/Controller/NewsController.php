@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace Front\Controller;
 
 use Aio\CmsBundle\BusinessLogic\Content\Content\ContentManager;
 use Aio\CmsBundle\BusinessLogic\Content\Content\ContentSearch;

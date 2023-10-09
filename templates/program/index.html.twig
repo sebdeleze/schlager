@@ -1,0 +1,24 @@
+{% extends 'default/layout.html.twig' %}
+
+{% block content %}
+    <h1>Programmation</h1>
+    <div class="flex flex-col gap-4">
+        {% for content in contents %}
+            <div class="mb-5">
+                <div class="text-center text-xl font-bold">{{ content.properties.hour }}</div>
+                <div class="h-8 w-1 my-4 border-2 border-red-600 border-dashed mx-auto"></div>
+                <div class="flex gap-4 bg-gray-100">
+                    <div class="w-48 h-48 bg-red-600">
+                        {% if content.images | length %}
+                            <img src="{{ asset('media/image/' ~ content.images[0].folder ~ '/' ~ content.images[0].fileName) ~ '.' ~ content.images[0].extension }}" class="my-5" alt="">
+                        {% endif %}
+                    </div>
+                    <div class="p-5">
+                        <h2 class="relative">{{ content.properties.name }} <sup class="text-sm font-thin text-red-600 -top-3.5">{{ content.properties.country }}</sup></h2>
+                        <div class="text-justify">{{ content.properties.description | raw }}</div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

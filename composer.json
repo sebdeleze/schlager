@@ -59,7 +59,9 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "Shared\\": "src/",
+            "Back\\": "apps/back/src/",
+            "Front\\": "apps/front/src/"
         }
     },
     "autoload-dev": {

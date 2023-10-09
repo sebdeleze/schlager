@@ -7,28 +7,12 @@ services:
       service: php_81
     networks:
       - default
-  back:
+  http:
     extends:
       file: docker-compose.services.yaml
       service: apache_24_flex
     labels:
-      - "traefik.frontend.rule=Host:back.${COMPOSE_PROJECT_NAME}.localhost"
-      - "traefik.enable=true"
-    networks:
-      - traefik
-      - default
-  front:
-    image: hub.iomedia.ch/apache_24_flex
-    container_name: ${COMPOSE_PROJECT_NAME}-front
-    depends_on:
-      - php
-    expose:
-      - 80 # http port
-      - 443 # https port
-    volumes:
-      - ./:/var/www:rw,cached
-    labels:
-      - "traefik.frontend.rule=Host:front.${COMPOSE_PROJECT_NAME}.localhost"
+      - "traefik.frontend.rule=Host:back.${COMPOSE_PROJECT_NAME}.localhost,front.${COMPOSE_PROJECT_NAME}.localhost"
       - "traefik.enable=true"
     networks:
       - traefik
