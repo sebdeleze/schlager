@@ -29,7 +29,7 @@ security:
         interval: "5 minutes"
 
   access_control:
-    - { path: ^/, roles: PUBLIC_ACCESS, host: front.schlager.localhost }
+    - { path: ^/, roles: PUBLIC_ACCESS, host: "%front_host%" }
     - { path: ^/api, roles: PUBLIC_ACCESS }
     - { path: ^/login, roles: PUBLIC_ACCESS }
     - { path: ^/forgot-password, roles: PUBLIC_ACCESS }
