@@ -7,10 +7,10 @@
             <div class="mb-5">
                 <div class="text-center text-xl font-bold">{{ content.properties.hour }}</div>
                 <div class="h-8 w-1 my-4 border-2 border-red-600 border-dashed mx-auto"></div>
-                <div class="flex gap-4 bg-gray-100">
-                    <div class="w-48 h-48 bg-red-600">
+                <div class="flex flex-col gap-4 bg-gray-100 md:flex-row">
+                    <div class="w-full md:w-48 h-48 bg-red-600">
                         {% if content.images | length %}
-                            <img src="{{ asset('media/image/' ~ content.images[0].folder ~ '/' ~ content.images[0].fileName) ~ '.' ~ content.images[0].extension }}" class="my-5" alt="">
+                            <img src="{{ asset('media/image/' ~ content.images[0].folder ~ '/' ~ content.images[0].fileName) ~ '.' ~ content.images[0].extension }}" class="h-full">
                         {% endif %}
                     </div>
                     <div class="p-5">

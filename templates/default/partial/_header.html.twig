@@ -46,21 +46,21 @@
                             </a>
                         </li>
                         <li class="ml-4 hidden md:block">
-                            <a href="https://infomaniak.events/shop/U7ONOJPQk2" target="_blank" class="rounded border border-white p-5 hover:bg-white hover:text-gray-900" data-turbo-frame="content">
-                                Billeterie
+                            <a href="https://billetterie.apres-ski-party.ch" target="_blank" class="rounded border border-white p-5 hover:bg-white hover:text-gray-900" data-turbo-frame="content">
+                                Billetterie
                             </a>
                         </li>
-                        <li class="relative lg:hidden" {{ stimulus_controller('dropdown') }}>
+                        <li class="lg:hidden" {{ stimulus_controller('dropdown') }}>
                             <a href="#" class="hover:text-gray-400" {{ stimulus_action('dropdown', 'toggle', 'click') }}>
                                 <svg class="w-9 h-9">
                                     <use href="{{ asset('symbol-defs.svg#burger') }}"></use>
                                 </svg>
                             </a>
-                            <div class="hidden absolute mt-4 py-4 px-8 z-10 w-96 right-0 bg-white border text-gray-900 rounded-lg shadow" {{ stimulus_target('dropdown', 'content') }}>
+                            <div class="hidden absolute left-2 right-2 mx-4 mt-8 lg:mt-4 py-4 px-8 z-10 md:w-96 md:left-auto lg:w-96 right-0 bg-white border text-gray-900 rounded-lg shadow" {{ stimulus_target('dropdown', 'content') }}>
                                 <ul class="flex flex-col gap-3">
                                     <li>
-                                        <a href="https://infomaniak.events/shop/U7ONOJPQk2" target="_blank" class="hover:text-gray-400" data-turbo-frame="content">
-                                            Billeterie
+                                        <a href="https://billetterie.apres-ski-party.ch" target="_blank" class="hover:text-gray-400" data-turbo-frame="content">
+                                            Billetterie
                                         </a>
                                     </li>
                                     {% for content in contents %}
@@ -107,7 +107,7 @@
                         </ul>
                     </div>
                     <div class="mt-8">
-                        <a href="#" class="bg-red-600 py-3 px-8 font-normal rounded text-sm md:text-xl">Découvrir la programmation</a>
+                        <a href="{{ path('app_program_index') }}" class="bg-red-600 py-3 px-8 font-normal rounded text-xs md:text-xl" data-turbo-frame="content">Découvrir la programmation</a>
                     </div>
                 {% endblock content_title %}
             </div>
