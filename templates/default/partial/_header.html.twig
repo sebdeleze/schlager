@@ -1,14 +1,14 @@
 <turbo-frame id="header">
     <nav id="nav-header" class="io-header" style="background-image: url({{ asset('background.jpg') }})">
-        <div class="backdrop-brightness-50 bg-black/30 w-full h-full">
-            <div class="grid grid-cols-2 lg:grid-cols-3 gap-3 px-16 py-8 items-center">
-                <div class="hidden lg:block">
-                    <ul class="flex gap-6 text-lg">
+        <div class="io-backdrop">
+            <div class="io-nav">
+                <div class="io-nav-left">
+                    <ul>
                         {% for content in contents %}
                             <li class="relative" {{ stimulus_controller('dropdown') }}>
-                                <a href="{{ content.link.url }}" class="hover:text-gray-400" data-turbo-frame="content" {{ stimulus_action('dropdown', 'toggle', 'click') }}>{{ content.link.label }}</a>
+                                <a href="{{ content.link.url }}" data-turbo-frame="content" {{ stimulus_action('dropdown', 'toggle', 'click') }}>{{ content.link.label }}</a>
                                 {% if content.children | length %}
-                                    <div class="hidden absolute mt-4 py-4 px-8 z-10 w-96 bg-white border text-gray-900 rounded-lg shadow" {{ stimulus_target('dropdown', 'content') }}>
+                                    <div class="io-dropdown io-hidden" {{ stimulus_target('dropdown', 'content') }}>
                                         <ul class="font-medium flex flex-col gap-5">
                                             {% for child in content.children %}
                                                 <li>
@@ -24,50 +24,50 @@
                         {% endfor %}
                     </ul>
                 </div>
-                <div class="lg:justify-self-center">
-                    <a href="{{ path('app_default_index') }}" class="flex items-center" data-turbo-frame="content">
-                        <img src="{{ asset('logo.svg') }}" class="w-48">
+                <div class="io-logo">
+                    <a href="{{ path('app_default_index') }}" data-turbo-frame="content">
+                        <img src="{{ asset('logo.svg') }}" class="w-48" alt="Après-Ski Closing Party">
                     </a>
                 </div>
-                <div class="justify-self-end">
-                    <ul class="flex gap-6 font-semibold items-center">
+                <div class="io-nav-right">
+                    <ul>
                         <li class="hidden md:block">
-                            <a href="https://www.facebook.com" target="_blank" class="hover:text-gray-400">
+                            <a href="https://www.facebook.com" target="_blank">
                                 <svg class="w-9 h-9">
                                     <use href="{{ asset('symbol-defs.svg#facebook') }}"></use>
                                 </svg>
                             </a>
                         </li>
                         <li class="hidden md:block">
-                            <a href="https://www.instragram.com" target="_blank" class="hover:text-gray-400">
+                            <a href="https://www.instragram.com" target="_blank">
                                 <svg class="w-9 h-9">
                                     <use href="{{ asset('symbol-defs.svg#instagram') }}"></use>
                                 </svg>
                             </a>
                         </li>
                         <li class="ml-4 hidden md:block">
-                            <a href="https://billetterie.apres-ski-party.ch" target="_blank" class="rounded border border-white p-5 hover:bg-white hover:text-gray-900" data-turbo-frame="content">
+                            <a href="https://billetterie.apres-ski-party.ch" target="_blank" class="io-cta" data-turbo-frame="content">
                                 Billetterie
                             </a>
                         </li>
-                        <li class="lg:hidden" {{ stimulus_controller('dropdown') }}>
-                            <a href="#" class="hover:text-gray-400" {{ stimulus_action('dropdown', 'toggle', 'click') }}>
+                        <li class="io-burger" {{ stimulus_controller('dropdown') }}>
+                            <a href="#" class="io-link" {{ stimulus_action('dropdown', 'toggle', 'click') }}>
                                 <svg class="w-9 h-9">
                                     <use href="{{ asset('symbol-defs.svg#burger') }}"></use>
                                 </svg>
                             </a>
-                            <div class="hidden absolute left-2 right-2 mx-4 mt-8 lg:mt-4 py-4 px-8 z-10 md:w-96 md:left-auto lg:w-96 right-0 bg-white border text-gray-900 rounded-lg shadow" {{ stimulus_target('dropdown', 'content') }}>
-                                <ul class="flex flex-col gap-3">
+                            <div class="io-content io-hidden" {{ stimulus_target('dropdown', 'content') }}>
+                                <ul>
                                     <li>
-                                        <a href="https://billetterie.apres-ski-party.ch" target="_blank" class="hover:text-gray-400" data-turbo-frame="content">
+                                        <a href="https://billetterie.apres-ski-party.ch" target="_blank" data-turbo-frame="content">
                                             Billetterie
                                         </a>
                                     </li>
                                     {% for content in contents %}
                                         <li class="relative">
-                                            <a href="{{ content.link.url }}" class="hover:text-gray-400" data-turbo-frame="content" {{ stimulus_action('dropdown', 'hide', 'click') }}>{{ content.link.label }}</a>
+                                            <a href="{{ content.link.url }}" data-turbo-frame="content" {{ stimulus_action('dropdown', 'hide', 'click') }}>{{ content.link.label }}</a>
                                             {% if content.children | length %}
-                                                <ul class="font-thin mt-1 ml-4 flex flex-col gap-1">
+                                                <ul>
                                                     {% for child in content.children %}
                                                         <li>
                                                             <a href="{{ child.link.url }}" data-turbo-frame="content" {{ stimulus_action('dropdown', 'hide', 'click') }}>
@@ -87,27 +87,27 @@
             </div>
             <div class="io-hero">
                 {% block content_title %}
-                    <div class="uppercase text-xl">Après-Ski Closing Party</div>
-                    <div class="text-6xl md:text-8xl font-heading font-thin uppercase">16 mars 2024</div>
-                    <div class="text-xl">
-                        <ul class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="io-title">Après-Ski Closing Party</div>
+                    <div class="io-date">16 mars 2024</div>
+                    <div class="io-artists">
+                        <ul>
                             <li>Lorenz Büffel</li>
                             <li>
-                                <span class="hidden text-red-900 text-3xl md:inline-block pb-3">.</span>
+                                <span class="io-separator">.</span>
                             </li>
                             <li>Marie Käfer</li>
                             <li>
-                                <span class="hidden text-red-900 text-3xl md:inline-block pb-3">.</span>
+                                <span class="io-separator">.</span>
                             </li>
                             <li>DJ Biene</li>
                             <li>
-                                <span class="hidden text-red-900 text-3xl md:inline-block pb-3">.</span>
+                                <span class="io-separator">.</span>
                             </li>
                             <li>Mike Le Troubadour</li>
                         </ul>
                     </div>
-                    <div class="mt-8">
-                        <a href="{{ path('app_program_index') }}" class="bg-red-600 py-3 px-8 font-normal rounded text-xs md:text-xl" data-turbo-frame="content">Découvrir la programmation</a>
+                    <div class="io-cta">
+                        <a href="{{ path('app_program_index') }}" class="io-button" data-turbo-frame="content">Découvrir la programmation</a>
                     </div>
                 {% endblock content_title %}
             </div>

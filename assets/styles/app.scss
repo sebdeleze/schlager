@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --color-primary: #dc2626;
+  }
+
   @font-face {
     font-family: FugazOne;
     src: url("../fonts/FugazOne-Regular.ttf");
@@ -14,30 +18,200 @@
   }
 
   body {
-    .io-header {
-      @apply h-[250px] text-white bg-cover bg-center;
+    .io-application {
+      @apply xl:container xl:mx-auto flex flex-col h-screen justify-between;
 
-      .io-hero {
-        @apply hidden;
+      header {
+        @apply mb-5;
+
+        .io-header {
+          @apply h-[250px] text-white bg-cover bg-center;
+
+          .io-backdrop {
+            @apply backdrop-brightness-50 bg-black/30 w-full h-full;
+
+            .io-nav {
+              @apply grid grid-cols-2 lg:grid-cols-3 gap-3 px-16 py-8 items-center;
+
+              .io-nav-left {
+                @apply hidden lg:block;
+
+                & > ul {
+                  @apply flex gap-6 text-lg;
+
+                  & > li {
+                    & > a {
+                      @apply hover:text-gray-400;
+                    }
+
+                    .io-dropdown {
+                      @apply absolute mt-4 py-4 px-8 z-10 w-96 bg-white border text-gray-900 rounded-lg shadow;
+
+                      &.io-hidden {
+                        @apply hidden;
+                      }
+                    }
+                  }
+                }
+              }
+
+              .io-logo {
+                @apply lg:justify-self-center;
+              }
+
+              .io-nav-right {
+                @apply justify-self-end;
+
+                > ul {
+                  @apply flex gap-6 font-semibold items-center;
+
+                  li {
+                    a {
+                      @apply hover:text-gray-400;
+                    }
+
+                    a.io-cta {
+                      @apply rounded border border-white p-5 hover:bg-white hover:text-gray-900;
+                    }
+                  }
+                }
+
+                .io-burger {
+                  @apply lg:hidden;
+
+                  .io-link {
+                    @apply hover:text-gray-400;
+                  }
+
+                  .io-content {
+                    @apply absolute left-2 right-2 mx-4 mt-8 lg:mt-4 py-4 px-8 z-10 md:w-96 md:left-auto lg:w-96 right-0 bg-white border text-gray-900 rounded-lg shadow;
+
+                    &.io-hidden {
+                      @apply hidden;
+                    }
+
+                    > ul {
+                      @apply flex flex-col gap-3;
+
+                      li {
+                        a {
+                          @apply hover:text-gray-400;
+                        }
+
+                        ul {
+                          @apply font-thin mt-1 ml-4 flex flex-col gap-1;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
+            .io-hero {
+              @apply hidden;
+            }
+          }
+        }
       }
-    }
 
-    .io-home {
-      .io-header {
-        @apply h-[800px];
+      &.io-home {
+        header {
+          .io-header {
+            @apply h-[800px];
 
-        .io-hero {
-          @apply absolute bottom-32 md:bottom-48 lg:bottom-16 xl:bottom-24 left-0 right-0 mx-auto w-full px-8 lg:w-2/3 xl:w-1/2 text-center text-xl font-semibold flex flex-col gap-y-8 gap-x-2 lg:gap-x-8;
+            .io-hero {
+              @apply flex absolute bottom-32 md:bottom-48 lg:bottom-16 xl:bottom-24 left-0 right-0 mx-auto w-full px-8 lg:w-2/3 xl:w-1/2 text-center text-xl font-semibold flex-col gap-y-8 gap-x-2 lg:gap-x-8;
+
+              .io-title {
+                @apply uppercase text-xl;
+              }
+
+              .io-date {
+                @apply text-6xl md:text-8xl font-heading font-thin uppercase;
+              }
+
+              .io-artists {
+                @apply text-xl;
+
+                ul {
+                  @apply flex flex-col md:flex-row justify-between items-center;
+
+                  .io-separator {
+                    @apply hidden text-red-900 text-3xl md:inline-block pb-3;
+                  }
+                }
+              }
+
+              .io-cta {
+                @apply mt-8;
+
+                .io-button {
+                  @apply bg-primary py-3 px-8 font-normal rounded text-xs md:text-xl;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      main {
+        @apply w-full py-12 mb-auto;
+
+        div.content {
+          @apply px-8 lg:mx-24 mx-auto;
+        }
+      }
+
+      footer {
+        @apply bg-primary text-white p-8 md:px-10 mt-5;
+
+        .io-logo {
+          @apply w-36 mx-auto;
+        }
+
+        .io-title {
+          @apply text-5xl text-center my-8 font-heading;
+        }
+
+        .io-bottom {
+          @apply grid md:grid-cols-2 md:gap-4 lg:gap-36 md:mt-16;
+
+          .io-nav {
+            @apply flex flex-col md:flex-row gap-5 divide-y md:divide-x md:divide-y-0 mb-10 text-center md:text-left;
+
+            ul {
+              @apply font-medium flex flex-col gap-4 pt-6 md:pt-0 md:px-8;
+
+              a {
+                @apply hover:text-gray-300;
+              }
+            }
+          }
+
+          .io-sponsors {
+            .io-title {
+              @apply text-center md:text-left mb-10 text-3xl font-heading;
+            }
+
+            .io-items {
+              @apply grid sm:grid-cols-3 gap-x-16 gap-y-10;
+
+              img {
+                @apply w-2/3 mx-auto sm:w-full;
+              }
+            }
+          }
         }
       }
     }
-  }
 
-  h1 {
-    @apply text-center text-4xl md:text-5xl mb-10 font-heading;
-  }
+    h1 {
+      @apply text-center text-4xl md:text-5xl mb-10 font-heading;
+    }
 
-  h2 {
-    @apply text-3xl mb-5 font-heading;
+    h2 {
+      @apply text-3xl mb-5 font-heading;
+    }
   }
 }

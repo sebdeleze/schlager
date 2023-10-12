@@ -10,6 +10,9 @@ module.exports = {
                 sans: ['Poppins', 'sans-serif'],
                 heading: ['FugazOne', 'sans-serif'],
             },
+            colors: {
+                primary: 'var(--color-primary)',
+            },
         },
     },
     plugins: [],

@@ -17,15 +17,15 @@ export default class extends Controller {
 
         event.preventDefault();
 
-        if (this.contentTarget.classList.contains('hidden')) {
-            this.contentTarget.classList.remove('hidden');
+        if (this.contentTarget.classList.contains('io-hidden')) {
+            this.contentTarget.classList.remove('io-hidden');
         } else {
             this.hide();
         }
     }
 
     hide() {
-        this.contentTarget.classList.add('hidden');
+        this.contentTarget.classList.add('io-hidden');
     }
 
     clickOutside() {

@@ -18,17 +18,17 @@
         {% endblock %}
     </head>
     <body>
-        <div id="application" class="xl:container xl:mx-auto flex flex-col h-screen justify-between" {{ stimulus_controller('app') }}>
-            <header class="mb-5">
+        <div id="application" class="io-application" {{ stimulus_controller('app') }}>
+            <header>
                 <turbo-frame id="header" src="{{ path('app_default_header', { isHome: app.request.attributes.get('_route') == 'app_default_index' ? '1' : '0' }) }}"></turbo-frame>
             </header>
-            <main class="w-full py-12 px-8 lg:px-24 lg:px-48 mx-auto mb-auto">
+            <main>
                 <turbo-frame id="content" data-turbo-action="advance">
                     {% block content %}Content
                     {% endblock %}
                 </turbo-frame>
             </main>
-            <footer class="bg-red-600 text-white p-8 md:px-10 mt-5">
+            <footer>
                 <turbo-frame id="footer" src="{{ path('app_default_footer') }}"></turbo-frame>
             </footer>
         </div>

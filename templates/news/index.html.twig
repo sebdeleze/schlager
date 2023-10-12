@@ -1,17 +1,19 @@
 {% extends 'default/layout.html.twig' %}
 
 {% block content %}
-    <h1>News</h1>
-    <div class="grid md:grid-cols-2 gap-16">
-        {% for content in contents %}
-            <div>
-                <h2>{{ content.properties.title }}</h2>
-                <div class="my-5 text-gray-400">{{ content.properties.date | date('d.m.Y') }}</div>
-                {% if content.images | length %}
-                    <img src="{{ asset('media/image/' ~ content.images[0].folder ~ '/' ~ content.images[0].fileName) ~ '.' ~ content.images[0].extension }}" class="my-5" alt="">
-                {% endif %}
-                <div class="text-justify">{{ content.properties.content | raw }}</div>
-            </div>
-        {% endfor %}
+    <div class="content">
+        <h1>News</h1>
+        <div class="grid md:grid-cols-2 gap-16">
+            {% for content in contents %}
+                <div>
+                    <h2>{{ content.properties.title }}</h2>
+                    <div class="my-5 text-gray-400">{{ content.properties.date | date('d.m.Y') }}</div>
+                    {% if content.images | length %}
+                        <img src="{{ asset('media/image/' ~ content.images[0].folder ~ '/' ~ content.images[0].fileName) ~ '.' ~ content.images[0].extension }}" class="my-5" alt="">
+                    {% endif %}
+                    <div class="text-justify">{{ content.properties.content | raw }}</div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
