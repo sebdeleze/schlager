@@ -1,0 +1,25 @@
+{% extends 'default/layout.html.twig' %}
+
+{% block content %}
+    <div class="content">
+        <h1>{{ content.properties.title }}</h1>
+        <div class="text-justify">{{ content.properties.content | raw }}</div>
+        {% for category in categories %}
+            <h2>{{ category.category.properties.name }}</h2>
+            <div class="flex flex-col gap-2 place-items-center md:flex-row md:gap-10">
+                {% for sponsor in category.sponsors %}
+                    {% if sponsor.images | length %}
+                        <div class="bg-gray-400 p-5 w-full flex flex-col text-white">
+                            <div class="mx-auto">
+                                <a href="{{ sponsor.properties.link }}" target="_blank">
+                                    <img src="{{ asset('media/image/' ~ sponsor.images[0].folder ~ '/' ~ sponsor.images[0].fileName) ~ '.' ~ sponsor.images[0].extension }}" alt="{{ sponsor.properties.name }}">
+                                </a>
+                            </div>
+                            <div class="text-center mt-3">{{ sponsor.properties.name }}</div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
