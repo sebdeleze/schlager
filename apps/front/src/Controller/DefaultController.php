@@ -3,6 +3,7 @@
 namespace Front\Controller;
 
 use Aio\CmsBundle\BusinessLogic\Content\Content\ContentManager;
+use Aio\CmsBundle\BusinessLogic\Content\Content\ContentSearch;
 use Aio\CmsBundle\BusinessLogic\Content\Hierarchy\ContentHierarchyFactory;
 use Aio\CmsBundle\BusinessLogic\Content\Tree\TreeManager;
 use Aio\CmsBundle\BusinessLogic\Navigation\NavigationSearch;
@@ -14,9 +15,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class DefaultController extends AbstractController
 {
     #[Route('/', name: 'app_default_index')]
-    public function index(): Response
+    public function index(TreeManager $treeManager, ContentManager $contentManager): Response
     {
-        return $this->render('default/index.html.twig');
+        $search = new ContentSearch();
+        $search->addOrderBy('dateFrom', 'desc');
+        $search->setPageSize(2);
+        $search->setTrees([$treeManager->findByNameKey('news')]);
+
+        $news = $contentManager->search($search);
+
+        return $this->render('default/index.html.twig', ['news' => $news]);
     }
 
     #[Route('/contents/{id}/{slug}', name: 'app_default_content')]

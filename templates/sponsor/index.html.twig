@@ -1,7 +1,7 @@
 {% extends 'default/layout.html.twig' %}
 
 {% block content %}
-    <div class="content">
+    <div class="io-content">
         <h1>{{ content.properties.title }}</h1>
         <div class="text-justify">{{ content.properties.content | raw }}</div>
         {% for category in categories %}
