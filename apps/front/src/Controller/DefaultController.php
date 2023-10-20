@@ -46,6 +46,8 @@ class DefaultController extends AbstractController
 
         $search = new NavigationSearch();
         $search->addTree($tree);
+        $search->clearStatuses();
+        $search->addStatus(2);
         $search->setLanguage($request->getLocale());
 
         $navigation = $contentHierarchyFactory->buildHierarchy($search, false);
@@ -62,6 +64,8 @@ class DefaultController extends AbstractController
 
         $search = new NavigationSearch();
         $search->addTree($tree);
+        $search->clearStatuses();
+        $search->addStatus(2);
         $search->setLanguage($request->getLocale());
 
         $navigation = $contentHierarchyFactory->buildHierarchy($search, false);

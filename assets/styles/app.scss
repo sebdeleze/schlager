@@ -156,7 +156,7 @@
       }
 
       main {
-        @apply w-full py-12 mb-auto;
+        @apply w-full pt-4 pb-12 mb-auto;
 
         .io-content {
           @apply px-8 lg:mx-24 mx-auto;
@@ -212,6 +212,14 @@
 
     h2 {
       @apply text-3xl mt-10 mb-5 font-heading;
+    }
+
+    h3 {
+      @apply text-xl mt-8 mb-2 font-semibold;
+    }
+
+    p {
+      @apply my-3;
     }
   }
 }

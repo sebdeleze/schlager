@@ -2,26 +2,44 @@
 
 {% block content %}
     <div class="io-content">
-        <div class="grid md:grid-cols-2 gap-16">
-            {% for new in news %}
-                <div>
-                    {% if new.images | length %}
-                        <img src="{{ asset('media/image/' ~ new.images[0].folder ~ '/' ~ new.images[0].fileName) ~ '.' ~ new.images[0].extension }}" class="my-5" alt="">
-                    {% endif %}
-                    <h2>{{ new.properties.title }}</h2>
-                    <div class="my-5 text-gray-400">{{ new.properties.date | date('d.m.Y') }}</div>
-                    <div class="text-justify">{{ new.properties.content | raw }}</div>
-                </div>
-            {% endfor %}
+        <div class="flex flex-wrap gap-8 md:gap-16 justify-center">
+            <div class="flex-initial w-36">
+                <a href="https://www.iomedia.ch" target="_blank">
+                    <img src="{{ asset('iomedia.png') }}" alt="iomedia communication">
+                </a>
+            </div>
         </div>
+    </div>
+    <div class="bg-primary p-10 text-white text-center my-10">
+        <h2 class="mt-1">Programme de la soirée</h2>
+        <div class="md:w-2/3 mx-auto">
+            <h3>18h00</h3>
+            <p>Ouverture des portes
+                <br>(exclusivement réservé aux personnes qui participeront au souper)</p>
+            <h3>19h00-21h30</h3>
+            <p>Repas<br>(choucroute artisanale de Champex-Lac - 6 sortes de viande)</p>
+            <p>1 bouteille de vin + eau minérale</p>
+            <p>Dessert + 1 café « Schuss »</p>
+            <p>Prix : CHF 70.- par personne</p>
+            <h3>Dès 20h30</h3>
+            <p>Ouverture des portes (tout public) - DJ-concerts</p>
+            <p>Prix : CHF 30.-, CHF 25.- (pré-location) par personne</p>
+            <h3>03h00</h3>
+            <p>Fin de la soirée</p>
+        </div>
+    </div>
+    <div class="my-10">
+        <video class="w-full" controls>
+            <source src="{{ asset('/media/video/0/lorenz-buffel.mp4') }}" type="video/mp4">
+        </video>
     </div>
     <div class="bg-primary p-10 text-white my-10">
         <div class="w-full md:w-1/3 mx-auto text-center">
             <h2 class="mt-1">Rendez-vous à la salle de l'Abeille à Riddes</h2>
             <p>Ouverture des portes à 18h00</p>
-            <p>
-                <a href="{{ path('app_default_content', { slug: 'acces-et-transport', id: '9' }) }}" target="_blank" class="inline-block border border-white rounded py-2 px-4 mt-4 hover:text-primary hover:bg-white">Itinéraire</a>
-            </p>
+            {# <p>
+                                        <a href="{{ path('app_default_content', { slug: 'acces-et-transport', id: '9' }) }}" class="inline-block border border-white rounded py-2 px-4 mt-4 hover:text-primary hover:bg-white">Itinéraire</a>
+                                    </p> #}
         </div>
     </div>
     <div class="io-content mt-14">

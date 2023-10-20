@@ -16,4 +16,8 @@ module.exports = {
         },
     },
     plugins: [],
+    safelist: [
+        'list-disc',
+        'ml-5',
+    ],
 }

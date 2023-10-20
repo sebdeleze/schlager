@@ -3,29 +3,4 @@
         <img src="{{ asset('logo.svg') }}" class="w-full" alt="Les Amis de la Schlager">
     </div>
     <div class="io-title">Après-Ski Closing Party</div>
-    <div class="io-bottom">
-        <div class="io-nav">
-            <div class="md:px-8">Association<br>
-                "Les Amis de la Schlager"<br><br>
-                Chemin de Balavaud 3<br>
-                1963 Vétroz<br>
-                Valais
-            </div>
-            <ul>
-                {% for content in contents %}
-                    <li>
-                        <a href="{{ content.link.url }}" data-turbo-frame="content">{{ content.link.label }}</a>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div class="io-sponsors">
-            <div class="io-title">Sponsors principaux</div>
-            <div class="io-items">
-                <a href="https://www.iomedia.ch" target="_blank">
-                    <img src="https://www.iomedia.ch/bundles/iomediaweb/img/logos/logo-iomedia-2022-white.svg" alt="iomedia communication">
-                </a>
-            </div>
-        </div>
-    </div>
 </turbo-frame>
