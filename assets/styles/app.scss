@@ -25,19 +25,19 @@
         @apply mb-5;
 
         .io-header {
-          @apply h-[250px] text-white bg-cover bg-center;
+          @apply h-[140px] md:h-[250px] text-white bg-cover bg-center;
 
           .io-backdrop {
             @apply backdrop-brightness-50 bg-black/30 w-full h-full;
 
             .io-nav {
-              @apply grid grid-cols-2 lg:grid-cols-3 gap-3 px-16 py-8 items-center;
+              @apply grid grid-cols-2 lg:grid-cols-3 gap-3 px-8 md:px-16 py-4 md:py-8 items-center;
 
               .io-nav-left {
                 @apply hidden lg:block;
 
                 & > ul {
-                  @apply flex gap-6 text-lg;
+                  @apply flex gap-6;
 
                   & > li {
                     & > a {
@@ -108,6 +108,14 @@
               }
             }
 
+            .io-nez-rouge {
+              @apply hidden;
+            }
+
+            .io-18-ans {
+              @apply hidden;
+            }
+
             .io-hero {
               @apply hidden;
             }
@@ -118,21 +126,37 @@
       &.io-home {
         header {
           .io-header {
-            @apply h-[800px];
+            @apply h-[350px] md:h-[600px];
+
+            .io-nez-rouge {
+              @apply block absolute left-5 bottom-5;
+
+              img {
+                @apply w-16 md:w-48;
+              }
+            }
+
+            .io-18-ans {
+              @apply block absolute right-5 bottom-5;
+
+              img {
+                @apply w-6 md:w-16;
+              }
+            }
 
             .io-hero {
-              @apply flex absolute bottom-32 md:bottom-48 lg:bottom-16 xl:bottom-24 left-0 right-0 mx-auto w-full px-8 lg:w-2/3 xl:w-1/2 text-center text-xl font-semibold flex-col gap-y-8 gap-x-2 lg:gap-x-8;
+              @apply flex absolute bottom-14 md:bottom-24 lg:bottom-16 left-0 right-0 mx-auto w-full px-8 lg:w-2/3 xl:w-1/2 text-center text-xl font-semibold flex-col gap-y-2 md:gap-y-8 gap-x-2 lg:gap-x-8;
 
               .io-title {
-                @apply uppercase text-xl;
+                @apply uppercase text-xl md:text-3xl;
               }
 
               .io-date {
-                @apply text-6xl md:text-8xl font-heading font-thin uppercase;
+                @apply text-2xl md:text-6xl font-heading font-thin uppercase;
               }
 
               .io-artists {
-                @apply text-xl;
+                @apply text-xs md:text-xl;
 
                 ul {
                   @apply flex flex-col md:flex-row justify-between items-center;
@@ -144,7 +168,7 @@
               }
 
               .io-cta {
-                @apply mt-8;
+                @apply hidden md:block mt-4 md:mt-8;
 
                 .io-button {
                   @apply bg-primary py-3 px-8 font-normal rounded text-xs md:text-xl;
@@ -171,7 +195,7 @@
         }
 
         .io-title {
-          @apply text-5xl text-center my-8 font-heading;
+          @apply text-3xl text-center my-8 font-heading;
         }
 
         .io-bottom {

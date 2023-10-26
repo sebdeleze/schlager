@@ -26,7 +26,7 @@
                 </div>
                 <div class="io-logo">
                     <a href="{{ path('app_default_index') }}" data-turbo-frame="content">
-                        <img src="{{ asset('logo.svg') }}" class="w-48" alt="Après-Ski Closing Party">
+                        <img src="{{ asset('logo.svg') }}" class="w-24 md:w-36" alt="Après-Ski Closing Party">
                     </a>
                 </div>
                 <div class="io-nav-right">
@@ -71,9 +71,15 @@
                     </ul>
                 </div>
             </div>
+            <div class="io-nez-rouge">
+                <img src="{{ asset('logo-nez-rouge.svg') }}" alt="Nez Rouge">
+            </div>
+            <div class="io-18-ans">
+                <img src="{{ asset('18.png') }}" alt="Interdit aux moins de 18 ans">
+            </div>
             <div class="io-hero">
                 {% block content_title %}
-                    <div class="io-title">Après-Ski Closing Party</div>
+                    <div class="io-title">Apres Ski Closing Party</div>
                     <div class="io-date">16 mars 2024</div>
                     <div class="io-artists">
                         <ul>

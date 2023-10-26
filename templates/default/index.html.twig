@@ -2,22 +2,25 @@
 
 {% block content %}
     <div class="io-content">
-        <div class="flex flex-wrap gap-8 md:gap-16 justify-center">
-            <div class="flex-initial w-36">
-                <a href="https://www.iomedia.ch" target="_blank">
-                    <img src="{{ asset('iomedia.png') }}" alt="iomedia communication">
-                </a>
-            </div>
+        <div class="flex flex-wrap gap-8 md:gap-16 justify-center items-center">
+            {% for sponsor in sponsors %}
+                {% if sponsor.images | length %}
+                    <div class="flex-initial w-52">
+                        <a href="{{ sponsor.properties.link }}" target="_blank">
+                            <img src="{{ asset('media/image/' ~ sponsor.images[0].folder ~ '/' ~ sponsor.images[0].fileName) ~ '.' ~ sponsor.images[0].extension }}" alt="{{ sponsor.properties.name }}">
+                        </a>
+                    </div>
+                {% endif %}
+            {% endfor %}
         </div>
     </div>
     <div class="bg-primary p-10 text-white text-center my-10">
         <h2 class="mt-1">Programme de la soirée</h2>
         <div class="md:w-2/3 mx-auto">
             <h3>18h00</h3>
-            <p>Ouverture des portes
-                <br>(exclusivement réservé aux personnes qui participeront au souper)</p>
-            <h3>19h00-21h30</h3>
-            <p>Repas<br>(choucroute artisanale de Champex-Lac - 6 sortes de viande)</p>
+            <p>Ouverture des portes<br>(exclusivement réservé aux personnes qui participeront au souper)</p>
+            <h3>19h00-21h00</h3>
+            <p>Repas servi à table<br>(choucroute artisanale de Champex-Lac - 6 sortes de viande)</p>
             <p>1 bouteille de vin + eau minérale</p>
             <p>Dessert + 1 café « Schuss »</p>
             <p>Prix : CHF 70.- par personne</p>
@@ -44,13 +47,13 @@
     </div>
     <div class="io-content mt-14">
         <div class="text-center flex flex-col gap-10 justify-center md:flex-row">
-            <div class="bg-gray-100 text-primary p-10 border border-primary rounded-lg">
+            <div class="bg-gray-100 text-primary p-10 border border-primary rounded-lg basis-auto md:basis-1/3">
                 <div>Repas et soirée</div>
                 <div class="font-semibold text-2xl mt-2 font-heading">70 CHF</div>
             </div>
-            <div class="bg-gray-100 text-primary p-10 border border-primary rounded-lg">
+            <div class="bg-gray-100 text-primary p-10 border border-primary rounded-lg basis-auto md:basis-1/3">
                 <div>Soirée uniquement</div>
-                <div class="font-semibold text-2xl mt-2 font-heading">30 CHF</div>
+                <div class="font-semibold text-2xl mt-2 font-heading">30 CHF<br><span class="text-sm">25 CHF en pré-location</span></div>
             </div>
         </div>
         <div class="text-center mt-2">

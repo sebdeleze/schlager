@@ -24,7 +24,13 @@ class DefaultController extends AbstractController
 
         $news = $contentManager->search($search);
 
-        return $this->render('default/index.html.twig', ['news' => $news]);
+        $search = new ContentSearch();
+        $search->setTrees([$treeManager->findByNameKey('sponsors')]);
+        $search->setCategoriesFilters(['category' => [25]]);
+        $search->addOrderBy('position', 'ASC');
+        $sponsors = $contentManager->search($search);
+
+        return $this->render('default/index.html.twig', ['news' => $news, 'sponsors' => $sponsors]);
     }
 
     #[Route('/contents/{id}/{slug}', name: 'app_default_content')]
@@ -58,7 +64,7 @@ class DefaultController extends AbstractController
     }
 
     #[Route('/footer', name: 'app_default_footer')]
-    public function footer(Request $request, TreeManager $treeManager, ContentHierarchyFactory $contentHierarchyFactory): Response
+    public function footer(Request $request, TreeManager $treeManager, ContentHierarchyFactory $contentHierarchyFactory, ContentManager $contentManager): Response
     {
         $tree = $treeManager->findByNameKey('footer');
 
@@ -70,8 +76,15 @@ class DefaultController extends AbstractController
 
         $navigation = $contentHierarchyFactory->buildHierarchy($search, false);
 
+        $search = new ContentSearch();
+        $search->setTrees([$treeManager->findByNameKey('sponsors')]);
+        $search->setCategoriesFilters(['category' => [26, 27]]);
+        $search->addOrderBy('position', 'ASC');
+        $sponsors = $contentManager->search($search);
+
         return $this->render('default/partial/_footer.html.twig', [
             'contents' => $navigation->getContents(),
+            'sponsors' => $sponsors,
         ]);
     }
 }
