@@ -2,10 +2,21 @@
 
 {% block content %}
     <div class="io-content">
+        <div class="flex flex-wrap gap-8 md:gap-16 justify-center items-center mb-4">
+            {% for sponsor in platiniumSponsors %}
+                {% if sponsor.images | length %}
+                    <div class="flex-initial w-64">
+                        <a href="{{ sponsor.properties.link }}" target="_blank">
+                            <img src="{{ asset('media/image/' ~ sponsor.images[0].folder ~ '/' ~ sponsor.images[0].fileName) ~ '.' ~ sponsor.images[0].extension }}" alt="{{ sponsor.properties.name }}">
+                        </a>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
         <div class="flex flex-wrap gap-8 md:gap-16 justify-center items-center">
             {% for sponsor in sponsors %}
                 {% if sponsor.images | length %}
-                    <div class="flex-initial w-52">
+                    <div class="flex-initial w-48">
                         <a href="{{ sponsor.properties.link }}" target="_blank">
                             <img src="{{ asset('media/image/' ~ sponsor.images[0].folder ~ '/' ~ sponsor.images[0].fileName) ~ '.' ~ sponsor.images[0].extension }}" alt="{{ sponsor.properties.name }}">
                         </a>
@@ -20,11 +31,11 @@
             <h3>18h00</h3>
             <p>Ouverture des portes<br>(exclusivement réservé aux personnes qui participeront au souper)</p>
             <h3>19h00-21h00</h3>
-            <p>Repas servi à table<br>(choucroute artisanale de Champex-Lac - 6 sortes de viande)</p>
+            <p>Repas servi à table et animé par Mike le Troubadour<br>(choucroute artisanale de Champex-Lac - 6 sortes de viande)</p>
             <p>1 bouteille de vin + eau minérale</p>
             <p>Dessert + 1 café « Schuss »</p>
             <p>Prix : CHF 70.- par personne</p>
-            <h3>Dès 20h30</h3>
+            <h3>Dès 21h00</h3>
             <p>Ouverture des portes (tout public) - DJ-concerts</p>
             <p>Prix : CHF 30.-, CHF 25.- (pré-location) par personne</p>
             <h3>03h00</h3>

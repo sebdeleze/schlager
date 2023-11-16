@@ -30,7 +30,13 @@ class DefaultController extends AbstractController
         $search->addOrderBy('position', 'ASC');
         $sponsors = $contentManager->search($search);
 
-        return $this->render('default/index.html.twig', ['news' => $news, 'sponsors' => $sponsors]);
+        $search = new ContentSearch();
+        $search->setTrees([$treeManager->findByNameKey('sponsors')]);
+        $search->setCategoriesFilters(['category' => [37]]);
+        $search->addOrderBy('position', 'ASC');
+        $platiniumSponsors = $contentManager->search($search);
+
+        return $this->render('default/index.html.twig', ['news' => $news, 'sponsors' => $sponsors, 'platiniumSponsors' => $platiniumSponsors]);
     }
 
     #[Route('/contents/{id}/{slug}', name: 'app_default_content')]
