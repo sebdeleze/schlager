@@ -5,7 +5,7 @@
         <div class="flex flex-wrap gap-8 md:gap-16 justify-center items-center mb-4">
             {% for sponsor in platiniumSponsors %}
                 {% if sponsor.images | length %}
-                    <div class="flex-initial w-64">
+                    <div class="flex-initial w-96">
                         <a href="{{ sponsor.properties.link }}" target="_blank">
                             <img src="{{ asset('media/image/' ~ sponsor.images[0].folder ~ '/' ~ sponsor.images[0].fileName) ~ '.' ~ sponsor.images[0].extension }}" alt="{{ sponsor.properties.name }}">
                         </a>
@@ -16,7 +16,7 @@
         <div class="flex flex-wrap gap-8 md:gap-16 justify-center items-center">
             {% for sponsor in sponsors %}
                 {% if sponsor.images | length %}
-                    <div class="flex-initial w-48">
+                    <div class="flex-initial w-40">
                         <a href="{{ sponsor.properties.link }}" target="_blank">
                             <img src="{{ asset('media/image/' ~ sponsor.images[0].folder ~ '/' ~ sponsor.images[0].fileName) ~ '.' ~ sponsor.images[0].extension }}" alt="{{ sponsor.properties.name }}">
                         </a>

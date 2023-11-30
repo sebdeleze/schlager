@@ -79,11 +79,19 @@
                                             {% endif %}
                                         </li>
                                     {% endfor %}
+                                    <li>
+                                        <a href="{{ path('app_default_content', { id: 50, slug: 'recherche-de-benevoles' }) }}" data-turbo-frame="content">
+                                            Recherche de bénévoles
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </li>
                     </ul>
                 </div>
+            </div>
+            <div class="io-volunteer">
+                <a href="{{ path('app_default_content', { id: 50, slug: 'recherche-de-benevoles' }) }}" class="io-button" data-turbo-frame="content">Recherche de bénévoles</a>
             </div>
             <div class="io-nez-rouge">
                 <img src="{{ asset('logo-nez-rouge.svg') }}" alt="Nez Rouge">

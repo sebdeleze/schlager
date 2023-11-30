@@ -121,6 +121,10 @@
             }
           }
         }
+
+        .io-volunteer {
+          @apply hidden;
+        }
       }
 
       &.io-home {
@@ -174,6 +178,14 @@
                   @apply bg-primary py-3 px-8 font-normal rounded text-xs md:text-xl;
                 }
               }
+            }
+          }
+
+          .io-volunteer {
+            @apply absolute left-5 xl:left-32 hidden md:block bottom-[120px] lg:bottom-[300px];
+
+            .io-button {
+              @apply border border-white p-3 rounded rounded-lg font-semibold;
             }
           }
         }

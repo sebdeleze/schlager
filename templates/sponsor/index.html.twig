@@ -10,20 +10,24 @@
             </a>
         </div>
         {% for category in categories %}
-            <h2>{{ category.category.properties.name }}</h2>
-            <div class="flex flex-wrap flex-col gap-8 items-center md:flex-row">
-                {% for sponsor in category.sponsors %}
-                    {% if sponsor.images | length %}
-                        <div class="w-52 flex flex-col">
-                            <div class="mx-auto">
-                                <a href="{{ sponsor.properties.link }}" target="_blank">
-                                    <img src="{{ asset('media/image/' ~ sponsor.images[0].folder ~ '/' ~ sponsor.images[0].fileName) ~ '.' ~ sponsor.images[0].extension }}" alt="{{ sponsor.properties.name }}">
-                                </a>
+            <div class="mt-24">
+                {% if category.sponsors | length > 1 %}
+                <h2 class="text-4xl text-primary">{{ category.category.properties.name }}</h2>
+                {% endif %}
+                <div class="flex flex-wrap flex-col gap-8 items-center md:flex-row">
+                    {% for sponsor in category.sponsors %}
+                        {% if sponsor.images | length %}
+                            <div class="w-{{ category.sponsors | length > 1 ? '52' : '96' }} flex flex-col">
+                                <div class="mx-auto">
+                                    <a href="{{ sponsor.properties.link }}" target="_blank">
+                                        <img src="{{ asset('media/image/' ~ sponsor.images[0].folder ~ '/' ~ sponsor.images[0].fileName) ~ '.' ~ sponsor.images[0].extension }}" alt="{{ sponsor.properties.name }}">
+                                    </a>
+                                </div>
+                                {# <div class="text-center mt-3">{{ sponsor.properties.name }}</div> #}
                             </div>
-                            {# <div class="text-center mt-3">{{ sponsor.properties.name }}</div> #}
-                        </div>
-                    {% endif %}
-                {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
             </div>
         {% endfor %}
     </div>
