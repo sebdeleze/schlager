@@ -4,11 +4,11 @@
     <div class="io-content">
         <h1>{{ content.properties.title }}</h1>
         <div class="text-center">{{ content.properties.content | raw }}</div>
-        <div class="text-center mt-8">
+        {# <div class="text-center mt-8">
             <a href="{{ asset('media/document/' ~ content.documents[0].folder ~ '/' ~ content.documents[0].fileName) ~ '.' ~ content.documents[0].extension }}" target="_blank" class="bg-primary py-3 px-8 rounded text-white">
                 {{ content.documents[0].caption }}
             </a>
-        </div>
+        </div> #}
         {% for category in categories %}
             <div class="mt-24">
                 {% if category.sponsors | length > 1 %}

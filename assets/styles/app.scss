@@ -185,7 +185,7 @@
             @apply absolute left-5 xl:left-32 hidden md:block bottom-[120px] lg:bottom-[300px];
 
             .io-button {
-              @apply border border-white p-3 rounded rounded-lg font-semibold;
+              @apply bg-primary text-white py-3 px-5 rounded font-medium;
             }
           }
         }
