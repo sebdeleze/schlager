@@ -34,7 +34,7 @@
               @apply grid grid-cols-2 lg:grid-cols-3 gap-3 px-8 md:px-16 py-4 md:py-8 items-center;
 
               .io-nav-left {
-                @apply hidden lg:block;
+                @apply hidden lg:block text-sm;
 
                 & > ul {
                   @apply flex gap-6;
